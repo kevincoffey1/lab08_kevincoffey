@@ -14,8 +14,10 @@ using namespace std;
  * Example: n1 -> n2 -> n3 -> n4 -> n5, k = 3
  * Return &n3
  */
-Node* findKthNode(Node *head, int k){ 
-	if (k > 1) 
+Node* findKthNode(Node *head, int k){
+        if (head == NULL) 
+		return NULL; 	
+	else if (k > 1) 
 		return findKthNode((*head).next,k-1); 
 	else 
         	return head;
@@ -78,6 +80,15 @@ Node* sum(Node *head1, Node *head2) {
  * Return &head of 1 -> 4 -> 2 -> 5 -> 3 -> 6
  */
 Node* splice(Node *head1, Node *head2) {
-    return NULL;
+	if (head1 == NULL && head2 == NULL) 
+		return NULL; 
+	else if (head1 == NULL) 
+		return head2; 
+	else if (head2 == NULL) 
+		return head1;
+	else
+		(*head1).next = splice(head2,(*head1).next); 
+        	
+        return head1;
     //STUB: edit with the correct output, according to the lab instructions, using recursion
 }
